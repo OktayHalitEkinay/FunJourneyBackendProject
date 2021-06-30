@@ -14,24 +14,62 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfPlaceDal : EfEntityRepositoryBase<Place, FunJourneyContext>, IPlaceDal
     {
-        
-        public List<PlaceDetailDto> GetPlaceDetails()
+        public List<PlaceDetailDto> GetPlaceDetails(Expression<Func<PlaceDetailDto, bool>> filter = null)
         {
-            using (FunJourneyContext context=new FunJourneyContext())
+            using (FunJourneyContext context = new FunJourneyContext())
             {
-                var result = from pl in context.Tbl_Places
-                             join c in context.Tbl_Categories on pl.CategoryId equals c.CategoryId
-                             join pr in context.Tbl_Provinces on pl.ProvinceId equals pr.ProvinceId
-                             select new PlaceDetailDto
-                             {
-                                 PlaceId = pl.PlaceId,
-                                 PlaceName = pl.PlaceName,
-                                 CategoryName = c.CategoryName,
-                                 ProvinceName = pr.ProvinceName
-                             };
+                if (filter == null)
+                {
+                    var result = from pl in context.Tbl_Places
+                                 join c in context.Tbl_Categories on pl.CategoryId equals c.CategoryId
+                                 join pr in context.Tbl_Provinces on pl.ProvinceId equals pr.ProvinceId
+                                 join im in context.Tbl_PlaceImages on pl.PlaceImageId equals im.PlaceImageId
+                                 select new PlaceDetailDto
+                                 {
+                                     PlaceId = pl.PlaceId,
+                                     CategoryId = pl.CategoryId,
+                                     PlaceName = pl.PlaceName,
+                                     PlaceInformation = pl.PlaceInformation,
+                                     AddressDescription = pl.AddressDescription,
+                                     CategoryName = c.CategoryName,
+                                     ProvinceName = pr.ProvinceName,
+                                     PlaceImageName = im.PlaceImageName
+                                 };
 
-                return result.ToList();
+                    return result.ToList();
+                }
+                else
+                {
+                    {
+                        var result = from pl in context.Tbl_Places
+                                     join c in context.Tbl_Categories on pl.CategoryId equals c.CategoryId
+                                     join pr in context.Tbl_Provinces on pl.ProvinceId equals pr.ProvinceId     
+                                     join im in context.Tbl_PlaceImages on pl.PlaceImageId equals im.PlaceImageId
+                                     select new PlaceDetailDto
+                                     {
+                                         PlaceId = pl.PlaceId,
+                                         CategoryId=pl.CategoryId,
+                                         PlaceName = pl.PlaceName,
+                                         PlaceInformation = pl.PlaceInformation,
+                                         AddressDescription = pl.AddressDescription,
+                                         CategoryName = c.CategoryName,
+                                         ProvinceName = pr.ProvinceName,
+                                         PlaceImageName=im.PlaceImageName
+                                     };
+                        return result.Where(filter).ToList();
+                    }
+                }
+
+
+
             }
+
+
+
+
         }
+
+
+     
     }
 }

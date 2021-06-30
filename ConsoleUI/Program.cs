@@ -72,24 +72,24 @@ namespace ConsoleUI
             });
         }
 
-        private static void DtoTest()
-        {
-            EfPlaceDal efPlaceDal = new EfPlaceDal();
-            PlaceManager placeManager = new PlaceManager(efPlaceDal);
+        //private static void DtoTest()
+        //{
+        //    EfPlaceDal efPlaceDal = new EfPlaceDal();
+        //    PlaceManager placeManager = new PlaceManager(efPlaceDal);
 
-            var result = placeManager.GetPlaceDetails();
-            if (result.Success == true)
-            {
-                foreach (var place in result.Data)
-                {
-                    Console.WriteLine( place.PlaceId+ "/" + place.PlaceName + "/" + place.ProvinceName);
-                }
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
-        }
+        //    var result = placeManager.GetPlaceDetails();
+        //    if (result.Success == true)
+        //    {
+        //        foreach (var place in result.Data)
+        //        {
+        //            Console.WriteLine( place.PlaceId+ "/" + place.PlaceName + "/" + place.ProvinceName);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine(result.Message);
+        //    }
+        //}
 
     }
 }

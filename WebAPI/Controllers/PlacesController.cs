@@ -64,14 +64,20 @@ namespace WebAPI.Controllers
             var result = _placeService.GetPlaceByChoose(CategoryId,ProvinceId);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
 
             return BadRequest(result);
         }
 
-        [HttpGet("getplacedetailsdto")]
-        public IActionResult GetPlaceDetailsDto()
+     
+
+   
+
+
+        /*DTOs*/
+        [HttpGet("GetPlaceDetails")]
+        public IActionResult GetPlaceDetails()
         {
             var result = _placeService.GetPlaceDetails();
             if (result.Success)
@@ -82,6 +88,39 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("GetPlaceDetailsByPlaceId")]
+        public IActionResult GetPlaceDetailsPlaceId(Int16 placeId)
+        {
+            var result = _placeService.GetPlaceDetailsByPlaceId(placeId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpGet("GetPlaceDetailsByCategoryId")]
+        public IActionResult GetPlaceDetailsCategoryId(Int16 categoryId)
+        {
+            var result = _placeService.GetPlaceDetailsByCategoryId(categoryId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        /*DTOs*/
+
+
+
+
+
+
+
+        /*CRUD*/
         [HttpPost("addplace")]
         public IActionResult AddPlace(Place place)
         {
@@ -106,6 +145,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+
         [HttpPost("deleteplace")]
         public IActionResult DeleteCar(Place place)
         {
@@ -117,8 +157,7 @@ namespace WebAPI.Controllers
 
             return BadRequest(result);
         }
-
-        
+        /*CRUD*/
 
     }
 }

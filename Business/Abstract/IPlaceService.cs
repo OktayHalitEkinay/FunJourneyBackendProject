@@ -15,14 +15,19 @@ namespace Business.Abstract
          IDataResult<List<Place>> GetPlaceByChoose(Int16 CategoryId,Int16 ProvinceId);
          IDataResult<List<Place>> GetPlaceCategoryId(short categoryId);
          IDataResult<List<Place>> GetPlaceProvinceId(short provinceId);
-         IDataResult<List<PlaceDetailDto>> GetPlaceDetails();
-         
-         
 
 
-         IResult Add(Place place);
+        /***Dtos*/
+        IDataResult<List<PlaceDetailDto>> GetPlaceDetails();
+        IDataResult<List<PlaceDetailDto>> GetPlaceDetailsByPlaceId(short placeId);
+        IDataResult<List<PlaceDetailDto>> GetPlaceDetailsByCategoryId(short categoryId);
+        /***Dtos*/
+
+
+        /**CRUD*/
+        IResult Add(Place place);
          IResult Update(Place place);
          IResult Delete(Place place);
-        
+        /**CRUD*/
     }
 }

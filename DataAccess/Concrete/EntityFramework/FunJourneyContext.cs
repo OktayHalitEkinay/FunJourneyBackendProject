@@ -19,6 +19,8 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Place> Tbl_Places { get; set; }
         public DbSet<Province> Tbl_Provinces { get; set; }
         public DbSet<Category> Tbl_Categories { get; set; }
+        public DbSet<PlaceImage> Tbl_PlaceImages { get; set; }
+
 
     }
 }

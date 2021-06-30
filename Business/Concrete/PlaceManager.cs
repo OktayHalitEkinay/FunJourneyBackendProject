@@ -24,12 +24,9 @@ namespace Business.Concrete
 
         public IDataResult<List<Place>> GetAll()
         {
-            return new DataResult<List<Place>>(_placeDal.GetAll(),true);                
+            return new DataResult<List<Place>>(_placeDal.GetAll(),true,"Bütün mekanlar listelendi.");                
         }
-        public IDataResult<List<PlaceDetailDto>> GetPlaceDetails()
-        {
-            return new SuccessDataResult<List<PlaceDetailDto>>(_placeDal.GetPlaceDetails());
-        }
+ 
         public IDataResult<List<Place>> GetPlaceByChoose(Int16 CategoryId, Int16 ProvinceId)
         {
             return new DataResult<List<Place>>(_placeDal.GetAll(p => p.CategoryId == CategoryId && p.ProvinceId == ProvinceId), true);
@@ -43,8 +40,28 @@ namespace Business.Concrete
         {
             return new DataResult<List<Place>>(_placeDal.GetAll(p => p.ProvinceId == provinceId), true, "Mekanlar kategori Id'ye göre Listelendi.");
         }
-    
-        /************************************************/
+
+
+        /*DtoS*/
+        public IDataResult<List<PlaceDetailDto>> GetPlaceDetailsByPlaceId(short placeId)
+        {
+            return new DataResult<List<PlaceDetailDto>>(_placeDal.GetPlaceDetails(p => p.PlaceId == placeId),true);
+        }
+
+        public IDataResult<List<PlaceDetailDto>> GetPlaceDetails()
+        {
+            return new DataResult<List<PlaceDetailDto>>(_placeDal.GetPlaceDetails(),true);
+        }
+
+        public IDataResult<List<PlaceDetailDto>> GetPlaceDetailsByCategoryId(short categoryId)
+        {
+            return new DataResult<List<PlaceDetailDto>>(_placeDal.GetPlaceDetails(p => p.CategoryId== categoryId), true);
+        }
+
+        /*DtoS*/
+
+
+        /******************CRUD********************/
         public IResult Add(Place place)
         {
 
@@ -67,7 +84,7 @@ namespace Business.Concrete
             _placeDal.Update(place);
             return new SuccessResult(Messages.PlaceUpdated);
         }
+        /******************CRUD********************/
 
-        
     }
 }

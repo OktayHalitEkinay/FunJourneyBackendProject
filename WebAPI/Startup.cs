@@ -43,6 +43,11 @@ namespace WebAPI
             services.AddSingleton<ICategoryService, CategoryManager>();
             services.AddSingleton<ICategoryDal, EfCategoryDal>();
 
+            services.AddSingleton<IPlaceImageService, PlaceImageManager>();
+            services.AddSingleton<IPlaceImageDal, EfPlaceImageDal>();
+
+
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
@@ -61,6 +66,8 @@ namespace WebAPI
             app.UseCors(builder=>builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
             app.UseHttpsRedirection();
+
+            app.UseStaticFiles();
 
             app.UseRouting();
 
