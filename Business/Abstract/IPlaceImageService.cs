@@ -12,6 +12,6 @@ namespace Business.Abstract
     {
         IDataResult<List<PlaceImage>> GetAll();
         IDataResult<List<PlaceImage>> GetImagesByPlaceId(Int16 placeId);
-        IDataResult<PlaceImage> GetById(Int16 placeImageId);
+        IDataResult<List<PlaceImage>> GetCategoryImageByCategoryId(short categoryId);
     }
 }

@@ -25,9 +25,9 @@ namespace Business.Concrete
             return new DataResult<List<PlaceImage>>(_placeImageDal.GetAll(),true);
         }
 
-        public IDataResult<PlaceImage> GetById(short placeImageId)
+        public IDataResult<List<PlaceImage>> GetCategoryImageByCategoryId(short categoryId)
         {
-            return new DataResult<PlaceImage>(_placeImageDal.Get(pi => pi.PlaceImageId == placeImageId),true);
+            return new DataResult<List<PlaceImage>>(_placeImageDal.GetAll(pi => pi.CategoryId == categoryId), true);
         }
 
         public IDataResult<List<PlaceImage>> GetImagesByPlaceId(short placeId)

@@ -25,7 +25,7 @@ namespace Business.Abstract
 
 
         /**CRUD*/
-        IResult Add(Place place);
+         IResult Add(Place place);
          IResult Update(Place place);
          IResult Delete(Place place);
         /**CRUD*/

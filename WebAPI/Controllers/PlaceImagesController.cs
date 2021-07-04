@@ -20,22 +20,10 @@ namespace WebAPI.Controllers
             _placeImageService = placeImageService;
         }
 
-
-        //[HttpGet("getall")]
-        //public IActionResult GetAll()
-        //{
-        //    var result = _placeImageService.GetAll();
-        //    if (result.Success)
-        //    {
-        //        return Ok(result);
-        //    }
-        //    return BadRequest(result);
-        //}
-
-        [HttpGet("getbyId")]
-        public IActionResult GetById(Int16 placeImageId)
+        [HttpGet("GetAllImages")]
+        public IActionResult GetAllImages()
         {
-            var result = _placeImageService.GetById(placeImageId);
+            var result = _placeImageService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -54,16 +42,18 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("GetAllImages")]
-        public IActionResult GetAllImages()
+        [HttpGet("getimagesbycategoryId")]
+        public IActionResult GetImagesByCategoryId(Int16 categoryId)
         {
-            var result = _placeImageService.GetAll();
+            var result = _placeImageService.GetCategoryImageByCategoryId(categoryId);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
+
+
 
 
 

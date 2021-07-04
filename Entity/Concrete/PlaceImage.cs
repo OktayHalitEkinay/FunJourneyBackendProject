@@ -12,5 +12,7 @@ namespace Entities.Concrete
         public Int16 PlaceImageId { get; set; }
         public string PlaceImageName { get; set; }
         public Int16 PlaceId { get; set; }
+        public Int16 CategoryId { get; set; }
+        public string CategoryImageName { get; set; }
     }
 }
